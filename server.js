@@ -8,9 +8,13 @@ import categoryRoutes from "./routes/categoryRoutes.js";
 import productRoutes from "./routes/productRoutes.js";
 import cors from "cors";
 import path from "path";
+import {fileURLToPath} from 'url';
 
 // configure env
 dotenv.config();
+//esmodeule fix
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // database config
 connectDB();
@@ -36,4 +40,11 @@ app.use("*", function (req, res) {
 // port
 const PORT = process.env.PORT || 8080;
 
-// run listern
+
+//run listen
+app.listen(PORT, () => {
+  console.log(
+    `Server Running on ${process.env.DEV_MODE} mode on port ${PORT}`.bgCyan
+      .white
+  );
+});
